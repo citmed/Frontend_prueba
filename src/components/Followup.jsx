@@ -38,7 +38,7 @@ const Followup = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `https://https://backend-prueba-1-pj2l.onrender.com/api/reminders/${id}/completed`,
+        `https://backend-prueba-1-pj2l.onrender.com/api/reminders/${id}/completed`,
         { completed: !currentState },
         { headers: { Authorization: `Bearer ${token}` } }
       );
