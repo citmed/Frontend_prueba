@@ -16,7 +16,7 @@ const Followup = () => {
   const fetchReminders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://citamedback.vercel.app/api/reminders", {
+      const res = await axios.get("https://backend-prueba-1-pj2l.onrender.com/api/reminders", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -38,7 +38,7 @@ const Followup = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `https://citamedback.vercel.app/api/reminders/${id}/completed`,
+        `https://https://backend-prueba-1-pj2l.onrender.com/api/reminders/${id}/completed`,
         { completed: !currentState },
         { headers: { Authorization: `Bearer ${token}` } }
       );

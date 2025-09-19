@@ -56,7 +56,7 @@ const Home = () => {
   useEffect(() => {
     const fetchReminders = async () => {
       try {
-        const res = await axios.get("https://citamedback.vercel.app/api/reminders", {
+        const res = await axios.get("https://backend-prueba-1-pj2l.onrender.com/api/reminders", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setReminders(res.data || []);
