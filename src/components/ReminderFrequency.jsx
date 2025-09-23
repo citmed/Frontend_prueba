@@ -59,7 +59,7 @@ function ReminderFrequency() {
     };
 
     try {
-      const res = await fetch('https://backend-prueba-three.vercel.app//api/reminders', {
+      const res = await fetch('https://backend-prueba-three.vercel.app/api/reminders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

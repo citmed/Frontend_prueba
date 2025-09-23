@@ -53,7 +53,7 @@ function ResetPassword() {
 
     try {
       const response = await fetch(
-        `https://backend-prueba-three.vercel.app//api/auth/reset-password/${token}`,
+        `https://backend-prueba-three.vercel.app/api/auth/reset-password/${token}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
