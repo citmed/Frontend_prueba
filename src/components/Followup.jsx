@@ -29,6 +29,7 @@ const Followup = () => {
     };
   }, []);
 
+  // 📌 Obtener recordatorios
   const fetchReminders = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -51,6 +52,7 @@ const Followup = () => {
     }
   };
 
+  // 📌 Marcar como completado
   const handleToggleCompleted = async (id, currentState) => {
     try {
       const token = localStorage.getItem("token");
@@ -70,19 +72,22 @@ const Followup = () => {
               }
             : r
         );
-        return updated.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+        return updated.sort(
+          (a, b) => new Date(a.fecha) - new Date(b.fecha)
+        );
       });
     } catch (error) {
       console.error("❌ Error al marcar completado:", error);
     }
   };
 
-  const handleToggleFavorite = async (id, currentState) => {
+  // 📌 Marcar como favorito
+  const handleToggleFavorite = async (id) => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
         `https://backend-prueba-three.vercel.app/api/reminders/${id}/favorite`,
-        { favorite: !currentState },
+        {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -96,6 +101,7 @@ const Followup = () => {
     }
   };
 
+  // 📌 Filtro de favoritos
   const filteredReminders = showFavorites
     ? reminders.filter((r) => r.favorite)
     : reminders;
@@ -117,21 +123,17 @@ const Followup = () => {
 
       {/* Contenido */}
       <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
-        {/* 🔹 Botones de control fuera de las tarjetas */}
-        <div className="followup-controls">
-          <button
-            className="followup-btn"
-            onClick={() => setShowFavorites(false)}
-          >
-            📋 Ver Todos
-          </button>
-          <button
-            className="followup-btn"
-            onClick={() => setShowFavorites(true)}
-          >
-            ⭐ Ver Favoritos
-          </button>
-        </div>
+        {/* Botón para alternar favoritos */}
+        {reminders.length > 0 && (
+          <div className="followup-filter">
+            <button
+              className="btn-favorites"
+              onClick={() => setShowFavorites(!showFavorites)}
+            >
+              {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
+            </button>
+          </div>
+        )}
 
         {filteredReminders.length === 0 ? (
           <p className="followup-no-data">No hay recordatorios</p>
@@ -172,31 +174,41 @@ const Followup = () => {
                       <>
                         <p className="followup-small">
                           📅{" "}
-                          {new Date(reminder.fecha).toLocaleDateString("es-CO", {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                          })}
+                          {new Date(reminder.fecha).toLocaleDateString(
+                            "es-CO",
+                            {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                            }
+                          )}
                         </p>
                         <p className="followup-small">
                           🕒{" "}
-                          {new Date(reminder.fecha).toLocaleTimeString("es-CO", {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: true,
-                          })}
+                          {new Date(reminder.fecha).toLocaleTimeString(
+                            "es-CO",
+                            {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                            }
+                          )}
                         </p>
                       </>
                     )}
 
                     {reminder.frecuencia && (
-                      <p className="followup-frequency">{reminder.frecuencia}</p>
+                      <p className="followup-frequency">
+                        {reminder.frecuencia}
+                      </p>
                     )}
 
                     {reminder.completed && reminder.completedAt && (
                       <p className="followup-completed">
                         ✔️ Completado el{" "}
-                        {new Date(reminder.completedAt).toLocaleString("es-CO")}
+                        {new Date(
+                          reminder.completedAt
+                        ).toLocaleString("es-CO")}
                       </p>
                     )}
                   </div>
@@ -218,14 +230,12 @@ const Followup = () => {
                       <span className="followup-slider"></span>
                     </label>
 
-                    {/* ⭐ Botón de favorito por tarjeta */}
+                    {/* ⭐ Botón de favorito */}
                     <button
-                      className={`followup-favorite-btn ${
+                      className={`favorite-btn ${
                         reminder.favorite ? "active" : ""
                       }`}
-                      onClick={() =>
-                        handleToggleFavorite(reminder._id, reminder.favorite)
-                      }
+                      onClick={() => handleToggleFavorite(reminder._id)}
                     >
                       <FaStar />
                     </button>
