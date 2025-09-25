@@ -137,11 +137,6 @@ const Followup = () => {
       <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
         {/* aquí sigue tu lista de recordatorios */}
       </main>
-
-
-
-
-
         {filteredReminders.length === 0 ? (
           <p className="followup-no-data">No hay recordatorios</p>
         ) : (
