@@ -109,7 +109,7 @@ const Followup = () => {
   return (
     <div className="followup-container">
       {/* Header fijo */}
-<header className="followup-header">
+      <header className="followup-header">
         <button className="followup-back" onClick={() => navigate("/home")}>
           <FaArrowLeft />
         </button>
@@ -119,34 +119,18 @@ const Followup = () => {
           className="milogo-followup"
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
-
-        {/* 📌 Menú hamburguesa en móviles */}
         {reminders.length > 0 && (
           <div className="followup-filter">
             <button
-              className="hamburger-btn"
-              onClick={() => setMenuOpen(!menuOpen)}
+              className="btn-favorites"
+              onClick={() => setShowFavorites(!showFavorites)}
             >
-              <FaBars />
+              {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
             </button>
-            {menuOpen && (
-              <div className="hamburger-menu">
-                <button
-                  className={`btn-favorites ${
-                    showFavorites ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setShowFavorites(!showFavorites);
-                    setMenuOpen(false);
-                  }}
-                >
-                  {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
-                </button>
-              </div>
-            )}
           </div>
         )}
       </header>
+
       {/* Contenido */}
       <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
         {/* Botón para alternar favoritos */}
