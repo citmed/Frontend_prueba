@@ -144,7 +144,7 @@ body {
 }
 
 /* favorito */ 
-/* 📌 Contenedor del botón dentro del header */
+/* 📌 Contenedor del botón dentro del header 
 .followup-filter {
   position: absolute;
   right: 20px;
@@ -152,7 +152,7 @@ body {
   transform: translateY(-50%);
 }
 
-/* Botón de favoritos en el header */
+/* Botón de favoritos en el header 
 .btn-favorites {
   background: none;
   border: 2px solid #f6c000;
@@ -171,7 +171,8 @@ body {
 .btn-favorites.active {
   background: #f6c000;
   color: white;
-}
+} 
+*/
 
 
 /* 📌 Tarjetas */
