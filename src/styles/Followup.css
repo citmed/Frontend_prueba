@@ -3,18 +3,15 @@ body {
   padding: 0;
   overflow-x: hidden; /* evita scroll horizontal */
   height: 100vh;
-  font-family: Arial, sans-serif;
 }
 
 /* 📌 Contenedor principal */
 .followup-container {
   width: 100%;
-  height: 100vh; /* que use toda la altura disponible */
+   height: 100vh; /* que use toda la altura disponible */
   background: white;
   position: relative;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
 }
 
 /* 📌 Header fijo */
@@ -37,11 +34,17 @@ body {
 /* 📌 Contenido principal */
 .followup-main {
   flex: 1;
-  min-height: calc(100vh - 80px); /* ajuste según el header */
+  min-height: calc(100vh - 70px); /* mantén el ajuste del header */
   padding: 20px;
-  overflow-y: auto; /* ✅ scroll vertical */
+  overflow-y: auto; /* ✅ agrega scroll vertical */
   box-sizing: border-box;
-  margin-top: 80px; /* evita que se solape con el header */
+}
+
+.followup-completed {
+  font-size: 0.85rem;
+  color: #155724;
+  margin-top: 5px;
+  font-weight: bold;
 }
 
 /* Botón de regreso */
@@ -58,14 +61,14 @@ body {
   justify-content: center;
 }
 
-.followup-back:hover {
+.followup-back:hover{
   background-color: #5a67d8;
   border-radius: 50%;
 }
 
 /* Logo */
 .milogo-followup {
-  height: 50px;
+  height: 150px;
   margin-right: 15px;
   object-fit: contain;
 }
@@ -78,56 +81,10 @@ body {
   text-align: center;
 }
 
-/* 📌 Contenedor global de botones (Favoritos / Ver todos) */
-.followup-global-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-/* Botón de favoritos */
-.followup-favorite-btn {
-  background: none;
-  border: 2px solid #f6c000;
-  color: #f6c000;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 6px 14px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.followup-favorite-btn:hover {
-  background: #fff8e1;
-}
-
-.followup-favorite-btn.favorited {
-  background: #f6c000;
-  color: white;
-}
-
-/* Botón de ver todos */
-.followup-viewall-btn {
-  background: #5a67d8;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.followup-viewall-btn:hover {
-  background: #434aa8;
-}
-
 /* Contenedor de tarjetas */
 .followup-grid-container {
   width: 100%;
+  overflow-x: auto;
 }
 
 .followup-list {
@@ -139,7 +96,6 @@ body {
   padding: 10px;
   margin: 0;
   width: 100%;
-  justify-content: center;
 }
 
 /* 📌 Tarjetas */
@@ -153,6 +109,7 @@ body {
   min-width: 280px;
   max-width: 320px;
   width: 100%;
+  height: auto;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
@@ -163,14 +120,9 @@ body {
 }
 
 .followup-card.completed {
-  opacity: 0.85;
+  opacity: 0.8;
   background-color: #f8fff9;
   border-left: 4px solid #48bb78;
-}
-
-.followup-card.favorited {
-  border: 2px solid #f6c000;
-  background-color: #fffbea;
 }
 
 /* Icono */
@@ -221,13 +173,6 @@ body {
   border-radius: 6px;
   display: inline-block;
   margin-top: 8px;
-}
-
-.followup-completed {
-  font-size: 0.85rem;
-  color: #155724;
-  margin-top: 5px;
-  font-weight: bold;
 }
 
 /* Controles */
@@ -308,26 +253,37 @@ body {
 }
 
 /* 📌 Responsive */
+@media (max-width: 1200px) {
+  .followup-card { min-width: 260px; }
+}
+
+@media (max-width: 992px) {
+  .followup-card { min-width: 240px; }
+}
+
 @media (max-width: 768px) {
   .followup-header { padding: 12px 16px; height: 70px; }
   .followup-title { font-size: 1.2rem; }
   .milogo-followup { height: 40px; margin-right: 12px; }
-  .followup-main { padding: 15px; margin-top: 70px; }
+  .followup-main { padding: 15px; min-height: calc(100vh - 70px); }
   .followup-list { flex-direction: column; align-items: center; }
-  .followup-card { min-width: auto; max-width: 100%; padding: 15px; }
+  .followup-card { min-width: auto; max-width: 100%; width: 100%; padding: 15px; }
   .followup-icon { font-size: 2.2rem; }
   .followup-reminder-title { font-size: 1rem; }
   .followup-description { font-size: 0.85rem; }
   .followup-small { font-size: 0.8rem; }
   .followup-question { font-size: 0.8rem; }
+  .followup-switch { width: 45px; height: 24px; }
+  .followup-slider:before { height: 18px; width: 18px; }
+  .followup-switch input:checked + .followup-slider:before { transform: translateX(21px); }
 }
 
 @media (max-width: 576px) {
   .followup-header { padding: 10px 12px; height: 65px; }
   .followup-title { font-size: 1.1rem; }
-  .milogo-followup { height: 35px; margin-right: 10px; }
+  .milogo-followup { height: 135px; margin-right: 10px; }
   .followup-back { font-size: 1.3rem; margin-right: 10px; }
-  .followup-main { padding: 10px; margin-top: 65px; }
+  .followup-main { padding: 10px; min-height: calc(100vh - 65px); }
   .followup-card { padding: 12px; }
   .followup-reminder-title { font-size: 0.95rem; }
   .followup-description { font-size: 0.8rem; }
@@ -338,5 +294,5 @@ body {
   .followup-title { font-size: 1rem; }
   .milogo-followup { height: 30px; margin-right: 8px; }
   .followup-back { font-size: 1.2rem; margin-right: 8px; }
-  .followup-main { padding: 8px; margin-top: 60px; }
+  .followup-main { padding: 8px; min-height: calc(100vh - 60px); }
 }
