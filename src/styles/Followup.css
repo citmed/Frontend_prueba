@@ -178,8 +178,8 @@ body {
 /* Favorito */
 .btn-favorites {
   background: none;
-  border: 2px solid #5a67d8;
-  color: #f6c000;
+  border: 2px solid #172add;
+  color: #ffffff;
   font-size: 0.8rem;   /* un poco más pequeño */
   font-weight: 600;
   cursor: pointer;
