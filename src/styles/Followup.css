@@ -310,6 +310,41 @@ body {
   width: 100%;
 }
 
+/* ============================= */
+/* RESPONSIVE FAVORITOS */
+/* ============================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .followup-filter {
+    right: 12px;
+  }
+  .btn-favorites {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 576px) {
+  .followup-filter {
+    right: 8px;
+  }
+  .btn-favorites {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 380px) {
+  .btn-favorites {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+}
+
 /* 📌 Responsive */
 @media (max-width: 1200px) {
   .followup-card { min-width: 260px; }
