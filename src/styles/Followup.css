@@ -147,20 +147,20 @@ body {
 /* 📌 Contenedor del botón dentro del header */
 .followup-filter {
   position: absolute;
-  right: 8px;   /* antes estaba en 20px */
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
 
+/* Botón de favoritos en el header */
 .btn-favorites {
   background: none;
   border: 2px solid #f6c000;
   color: #f6c000;
-  font-size: 0.8rem;   /* un poco más pequeño */
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 4px 8px;   /* menos padding */
-  border-radius: 6px; /* esquinas más compactas */
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
