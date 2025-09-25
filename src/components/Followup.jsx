@@ -119,21 +119,23 @@ const Followup = () => {
           className="milogo-followup"
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
-              {/* Contenido */}
-      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
-        {/* Botón para alternar favoritos */}
-        {reminders.length > 0 && (
-          <div className="followup-filter">
-            <button
-              className="btn-favorites"
-              onClick={() => setShowFavorites(!showFavorites)}
-            >
-              {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
-            </button>
-          </div>
-        )}
+
+        {/* Contenido */}
+        <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
+          {/* Botón para alternar favoritos */}
+          {reminders.length > 0 && (
+            <div className="followup-filter">
+              <button
+                className={`btn-favorites ${showFavorites ? "active" : ""}`}
+                onClick={() => setShowFavorites(!showFavorites)}
+              >
+                {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
+              </button>
+            </div>
+          )}
         </main>
       </header>
+
 
 
 

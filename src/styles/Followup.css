@@ -141,6 +141,38 @@ body {
   width: 100%;
   justify-content: center;
 }
+/* Contenedor del filtro */
+.followup-filter {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Botón de favoritos */
+.btn-favorites {
+  background-color: #f9f9f9;
+  border: 2px solid #ffd700;
+  color: #333;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.btn-favorites:hover {
+  background-color: #ffd700;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Estado activo (cuando están viendo favoritos) */
+.btn-favorites.active {
+  background-color: #ffd700;
+  color: #fff;
+}
+
 
 /* 📌 Tarjetas */
 .followup-card {
