@@ -130,30 +130,6 @@ const Followup = () => {
           </div>
         )}
       </header>
-       {/* Menú móvil */}
-      {isMobile && isMenuOpen && (
-        <div className="mobile-menu mobile-menu-open">
-          <button
-            className="mobile-menu-btn flex items-center gap-2"
-            onClick={() => {
-              navigate("/profile");
-              setIsMenuOpen(false);
-            }}
-          >
-            <span className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-600 text-white font-bold"></span>
-            Mi Perfil
-          </button>
-          <button
-            className="mobile-menu-btn"
-            onClick={() => {
-              handleLogout();
-              setIsMenuOpen(false);
-            }}
-          >
-            Cerrar Sesión
-          </button>
-        </div>
-      )}
 
       {/* Contenido */}
       <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
