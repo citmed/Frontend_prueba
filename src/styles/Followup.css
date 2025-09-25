@@ -86,7 +86,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* Botón de favoritos */
+/* Botón de favoritos 
 .followup-favorite-btn {
   background: none;
   border: 2px solid #f6c000;
@@ -108,7 +108,7 @@ body {
   color: white;
 }
 
-/* Botón de ver todos */
+/* Botón de ver todos *
 .followup-viewall-btn {
   background: #5a67d8;
   color: white;
@@ -125,10 +125,10 @@ body {
   background: #434aa8;
 }
 
-/* Contenedor de tarjetas */
+/* Contenedor de tarjetas 
 .followup-grid-container {
   width: 100%;
-}
+} */
 
 
 .followup-list {
@@ -175,7 +175,36 @@ body {
 */
 
 
+/* 📌 Tarjetas */
+.followup-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  max-width: 320px;
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
 
+.followup-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.followup-card.completed {
+  opacity: 0.85;
+  background-color: #f8fff9;
+  border-left: 4px solid #48bb78;
+}
+
+.followup-card.favorited {
+  border: 2px solid #f6c000;
+  background-color: #fffbea;
+}
 
 /* Icono */
 .followup-left {
