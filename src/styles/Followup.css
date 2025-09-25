@@ -25,6 +25,7 @@ body {
   padding: 15px 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between; /* ✅ distribuye: back/logo/título a la izquierda y botón a la derecha */
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   height: 80px;
@@ -175,14 +176,13 @@ body {
   margin-top: 8px;
 }
 
+
 /* 📌 Contenedor del botón dentro del header */
 .followup-filter {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative; /* ✅ antes estaba absolute */
   display: flex;
   align-items: center;
+  margin-left: auto;  /* ✅ lo empuja a la derecha */
 }
 
 /* Botón de favoritos en el header */
