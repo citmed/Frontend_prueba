@@ -190,21 +190,24 @@ body {
   background: none;
   border: 2px solid #5a67d8;
   color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   cursor: pointer;
-  padding: 6px 14px;
-  border-radius: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
   transition: all 0.3s ease;
-  white-space: nowrap; /* evita que el texto salte de línea */
 }
 
 .btn-favorites:hover {
   background: #5a67d8;
+  transform: scale(1.05);
 }
 
 .btn-favorites.active {
   background: #5a67d8;
+  transform: scale(0.95);
   color: white;
 }
 /* Botón de estrella base */
