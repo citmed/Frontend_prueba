@@ -218,7 +218,8 @@ body {
 
 /* Hover */
 .favorite-btn:hover {
-  color: #5a67d8; /* amarillo en hover */
+  background-color: #5a67d8;
+  color: #f6c000; /* amarillo en hover */
   transform: scale(1.1);
 }
 
