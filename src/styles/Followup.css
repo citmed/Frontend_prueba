@@ -149,7 +149,7 @@ body {
   position: absolute;
   right: 20px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(50%);
 }
 
 /* Botón de favoritos en el header */
