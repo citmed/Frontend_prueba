@@ -119,24 +119,22 @@ const Followup = () => {
           className="milogo-followup"
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
+      </header>
 
-        {/* 📌 Botón de favoritos en el header */}
+      {/* Contenido */}
+      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
+        {/* Botón para alternar favoritos */}
         {reminders.length > 0 && (
           <div className="followup-filter">
             <button
-              className={`btn-favorites ${showFavorites ? "active" : ""}`}
+              className="btn-favorites"
               onClick={() => setShowFavorites(!showFavorites)}
             >
               {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
             </button>
           </div>
         )}
-      </header>
 
-      {/* Contenido */}
-      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
-        {/* aquí sigue tu lista de recordatorios */}
-      </main>
         {filteredReminders.length === 0 ? (
           <p className="followup-no-data">No hay recordatorios</p>
         ) : (
@@ -247,7 +245,7 @@ const Followup = () => {
             </ul>
           </div>
         )}
-      
+      </main>
     </div>
   );
 };
