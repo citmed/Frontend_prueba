@@ -130,6 +130,7 @@ body {
   width: 100%;
 }
 
+
 .followup-list {
   background-color: white;
   list-style: none;
@@ -141,33 +142,56 @@ body {
   width: 100%;
   justify-content: center;
 }
-/* Contenedor del filtro */
-.followup-filter {
+
+/* favorito */ 
+/* Contenedor del header */
+.followup-header {
+  position: relative;
   display: flex;
-  justify-content: center;
-  margin: 1rem 0;
+  align-items: center;
+  justify-content: center; /* centra el título */
+  background: linear-gradient(90deg, #6a5acd, #7b68ee);
+  color: white;
+  padding: 1rem;
 }
 
-/* Botón de favoritos */
+/* Botón de retroceso (izquierda) */
+.followup-back {
+  position: absolute;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Botón favoritos (derecha) */
+.followup-filter {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .btn-favorites {
   background-color: #f9f9f9;
   border: 2px solid #ffd700;
   color: #333;
   font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 0.85rem;
   transition: all 0.3s ease;
 }
 
-/* Hover */
 .btn-favorites:hover {
   background-color: #ffd700;
   color: #fff;
   transform: scale(1.05);
 }
 
-/* Estado activo (cuando están viendo favoritos) */
 .btn-favorites.active {
   background-color: #ffd700;
   color: #fff;

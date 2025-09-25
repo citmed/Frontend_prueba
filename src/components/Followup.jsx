@@ -120,21 +120,24 @@ const Followup = () => {
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
 
-        {/* Contenido */}
-        <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
-          {/* Botón para alternar favoritos */}
-          {reminders.length > 0 && (
-            <div className="followup-filter">
-              <button
-                className={`btn-favorites ${showFavorites ? "active" : ""}`}
-                onClick={() => setShowFavorites(!showFavorites)}
-              >
-                {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
-              </button>
-            </div>
-          )}
-        </main>
+        {/* 📌 Botón de favoritos en el header */}
+        {reminders.length > 0 && (
+          <div className="followup-filter">
+            <button
+              className={`btn-favorites ${showFavorites ? "active" : ""}`}
+              onClick={() => setShowFavorites(!showFavorites)}
+            >
+              {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
+            </button>
+          </div>
+        )}
       </header>
+
+      {/* Contenido */}
+      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
+        {/* aquí sigue tu lista de recordatorios */}
+      </main>
+
 
 
 
