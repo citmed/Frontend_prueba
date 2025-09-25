@@ -119,11 +119,6 @@ const Followup = () => {
           className="milogo-followup"
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
-      </header>
-
-      {/* Contenido */}
-      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
-        {/* Botón para alternar favoritos */}
         {reminders.length > 0 && (
           <div className="followup-filter">
             <button
@@ -134,6 +129,12 @@ const Followup = () => {
             </button>
           </div>
         )}
+      </header>
+
+      {/* Contenido */}
+      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
+        {/* Botón para alternar favoritos */}
+        
 
         {filteredReminders.length === 0 ? (
           <p className="followup-no-data">No hay recordatorios</p>
