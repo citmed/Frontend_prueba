@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Followup.css";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaPills, FaUserMd, FaStar, FaBars } from "react-icons/fa";
+import { FaArrowLeft, FaPills, FaUserMd, FaStar } from "react-icons/fa";
 import axios from "axios";
 import logo from "../assets/Logocitamed.png";
 
@@ -10,7 +10,6 @@ const Followup = () => {
   const [reminders, setReminders] = useState([]);
   const [headerHeight, setHeaderHeight] = useState(90);
   const [showFavorites, setShowFavorites] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchReminders();
@@ -120,37 +119,23 @@ const Followup = () => {
           className="milogo-followup"
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
-
-        {/* 📌 Menú hamburguesa en móviles */}
         {reminders.length > 0 && (
           <div className="followup-filter">
             <button
-              className="hamburger-btn"
-              onClick={() => setMenuOpen(!menuOpen)}
+              className="btn-favorites"
+              onClick={() => setShowFavorites(!showFavorites)}
             >
-              <FaBars />
+              {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
             </button>
-            {menuOpen && (
-              <div className="hamburger-menu">
-                <button
-                  className={`btn-favorites ${
-                    showFavorites ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setShowFavorites(!showFavorites);
-                    setMenuOpen(false);
-                  }}
-                >
-                  {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
-                </button>
-              </div>
-            )}
           </div>
         )}
       </header>
 
       {/* Contenido */}
       <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
+        {/* Botón para alternar favoritos */}
+        
+
         {filteredReminders.length === 0 ? (
           <p className="followup-no-data">No hay recordatorios</p>
         ) : (
