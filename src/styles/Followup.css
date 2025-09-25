@@ -310,6 +310,55 @@ body {
   width: 100%;
 }
 
+/* ============================= */
+/* MENÚ HAMBURGUESA */
+/* ============================= */
+
+/* Desktop por defecto */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
+
+/* Botón hamburguesa */
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Menú desplegable */
+.hamburger-menu {
+  position: absolute;
+  top: 80px; /* debajo del header */
+  right: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding: 10px;
+  z-index: 2000;
+}
+
+.hamburger-menu .btn-favorites {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #5a67d8;
+  border: 2px solid #5a67d8;
+  background: none;
+}
+
+/* Responsive: ocultamos desktop y mostramos mobile */
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: flex; align-items: center; }
+}
+
+
 /* 📌 Responsive */
 @media (max-width: 1200px) {
   .followup-card { min-width: 260px; }
