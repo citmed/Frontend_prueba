@@ -175,6 +175,20 @@ body {
   margin-top: 8px;
 }
 
+/* Favorito */
+.btn-favorites {
+  background: none;
+  border: 2px solid #f6c000;
+  color: #f6c000;
+  font-size: 0.8rem;   /* un poco más pequeño */
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;   /* menos padding */
+  border-radius: 6px; /* esquinas más compactas */
+  transition: all 0.3s ease;
+}
+
+
 /* Controles */
 .followup-right {
   display: flex;
