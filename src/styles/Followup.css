@@ -83,10 +83,10 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  
+  margin-bottom: 20px;
 }
 
-/* Botón de favoritos 
+/* Botón de favoritos */
 .followup-favorite-btn {
   background: none;
   border: 2px solid #f6c000;
@@ -108,7 +108,7 @@ body {
   color: white;
 }
 
-/* Botón de ver todos *
+/* Botón de ver todos */
 .followup-viewall-btn {
   background: #5a67d8;
   color: white;
@@ -125,11 +125,10 @@ body {
   background: #434aa8;
 }
 
-/* Contenedor de tarjetas 
+/* Contenedor de tarjetas */
 .followup-grid-container {
   width: 100%;
-} */
-
+}
 
 .followup-list {
   background-color: white;
@@ -142,38 +141,6 @@ body {
   width: 100%;
   justify-content: center;
 }
-
-/* favorito */ 
-/* 📌 Contenedor del botón dentro del header 
-.followup-filter {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Botón de favoritos en el header 
-.btn-favorites {
-  background: none;
-  border: 2px solid #f6c000;
-  color: #f6c000;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.btn-favorites:hover {
-  background: #fff8e1;
-}
-
-.btn-favorites.active {
-  background: #f6c000;
-  color: white;
-} 
-*/
-
 
 /* 📌 Tarjetas */
 .followup-card {
