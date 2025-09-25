@@ -80,6 +80,7 @@ body {
   margin: 0;
   flex: 1;
   text-align: center;
+  margin-right: 70px;
 }
 
 /* Contenedor de tarjetas */
@@ -373,7 +374,7 @@ body {
 
 @media (max-width: 576px) {
   .followup-header { padding: 10px 12px; height: 65px; }
-  .followup-title { font-size: 1.1rem; }
+  .followup-title { font-size: 1.1rem; margin-right: 50px; }
   .milogo-followup { height: 135px; margin-right: 10px; }
   .followup-back { font-size: 1.3rem; margin-right: 10px; }
   .followup-main { padding: 10px; min-height: calc(100vh - 65px); }
