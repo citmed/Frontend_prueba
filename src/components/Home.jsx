@@ -166,7 +166,18 @@ const Home = () => {
           onChange={setSelectedDate}
           value={selectedDate}
           className="mx-auto calendar-custom"
+          tileContent={({ date, view }) => {
+            if (view === "month") {
+              const reminderDates = reminders.map((rem) => getReminderDate(rem));
+              const dateISO = toLocalDateString(date);
+              if (reminderDates.includes(dateISO)) {
+                return <span className="calendar-dot">•</span>;
+              }
+            }
+            return null;
+          }}
         />
+
       </section>
 
       {/* Recordatorios */}
