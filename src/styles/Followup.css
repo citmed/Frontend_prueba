@@ -328,12 +328,13 @@ body {
 /* Móviles */
 @media (max-width: 576px) {
   .followup-filter {
-    right: 8px;
+    right: 168px;
+    margin-top: 15px;
   }
   .btn-favorites {
     font-size: 0.75rem;
     padding: 4px 8px;
-    border-radius: 6px;
+    border: none;
   }
 }
 
@@ -373,7 +374,7 @@ body {
 
 @media (max-width: 576px) {
   .followup-header { padding: 10px 12px; height: 65px; }
-  .followup-title { font-size: 1.1rem; margin-right: 20px; }
+  .followup-title { font-size: 1.1rem; }
   .milogo-followup { height: 135px; margin-right: 10px; }
   .followup-back { font-size: 1.3rem; margin-right: 10px; }
   .followup-main { padding: 10px; min-height: calc(100vh - 65px); }

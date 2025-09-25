@@ -19,7 +19,7 @@ function AdminDashboard() {
 
         const fetchWinners = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/winners', {
+                const response = await fetch('https://backend-prueba-three.vercel.app/api/winners', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`, // Agrega el token aquí
