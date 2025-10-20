@@ -6,7 +6,7 @@ import "../styles/Login.css";
 import loginImage from "../assets/imagencitamed.jpg";
 import logo from "../assets/Logocitamed.png";
 
-const API_URL = "https://backend-prueba-1-pj2l.onrender.com/api";
+const API_URL = "https://backend-prueba-three.vercel.app/api";
 const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 function Login() {
@@ -175,6 +175,10 @@ function Login() {
           <p>
             ¿Olvidaste tu contraseña?{" "}
             <a href="/forgot-password">Recupérala aquí</a>
+          </p>
+          <p>
+            ¿Olvidaste tu usuario?{" "}
+            <a href="/recover-username">Recupéralo aquí</a>
           </p>
           <p>
             ¿Aún no estás registrado? <a href="/register">Registrarse</a>

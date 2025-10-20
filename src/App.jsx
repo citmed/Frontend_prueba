@@ -12,8 +12,11 @@ import ReminderMedicine from './components/ReminderMedicine';
 import ReminderFrequency from './components/ReminderFrequency';
 import ReminderCreated from './components/ReminderCreated';
 import UserProfile from "./components/userProfile";
-import ForgotPassword from "./components/ForgotPassword";   // 🔹 Nuevo
-import ResetPassword from "./components/ResetPassword";     // 🔹 Nuevo
+import ForgotPassword from "./components/ForgotPassword";   
+import ResetPassword from "./components/ResetPassword";     
+import EditReminder from './components/EditReminder';
+import RecoverUsername from './components/RecoverUsername';
+import AutoLogout from "./components/AutoLogout";
 
 import './App.css';
 
@@ -50,9 +53,16 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 };
 
 function App() {
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // 🔑 Elimina el token
+  };
+
   return (
     <Router>
       <div className="App">
+        {/* ⏱️ Auto cierre de sesión tras 2 minutos de inactividad */}
+        <AutoLogout onLogout={handleLogout} />
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
@@ -61,6 +71,8 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/edit-reminder/:id" element={<EditReminder />} />
+          <Route path="/recover-username" element={<RecoverUsername />} />
 
           {/* Redirección lógica del dashboard */}
           <Route

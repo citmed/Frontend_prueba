@@ -1,0 +1,236 @@
+.edit-reminder-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: white;
+}
+
+.edit-reminder-header {
+  background-color: #7986CB;
+  color: white;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.edit-reminder-banner {
+  margin-top: 150px;
+  color: black;
+  padding: 15px 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.edit-reminder-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-reminder-close-btn:hover {
+  color: white;
+  background-color: #7986CB;
+}
+
+.edit-reminder-title {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-reminder-content {
+  background-color: #fff;
+  padding: 30px 20px;
+  margin-top: 120px; /* para no chocar con el header */
+}
+
+.edit-reminder-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.edit-reminder-label {
+  display: block;
+  font-weight: 500;
+  margin: 15px 0 8px;
+  color: #333;
+}
+
+.edit-reminder-input,
+.edit-reminder-textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid #2b2b2b;
+  color: black;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.edit-reminder-input:focus,
+.edit-reminder-textarea:focus {
+  outline: none;
+  border-color: #7986CB;
+}
+
+.edit-reminder-textarea {
+  height: 100px;
+  resize: none;
+}
+
+.edit-reminder-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.edit-reminder-save-btn {
+  background-color: #7986CB;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-reminder-save-btn:hover {
+  background-color: #6977b8;
+}
+
+.edit-reminder-cancel-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-reminder-cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+ /* ====== CONTENEDOR FORMULARIO ====== */
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* ====== CAMPOS DEL FORMULARIO ====== */
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    background-color: #fff;
+    border: 1px solid #8d8d8d;
+    color: black;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  }
+  
+  textarea {
+    resize: none;
+    min-height: 80px;
+  }
+  
+  /* ====== BOTONES ====== */
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .btn-save {
+    flex: 1;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-save:hover:not(:disabled) {
+    background: #218838;
+  }
+  
+  .btn-save:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .btn-cancel {
+    flex: 1;
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-cancel:hover {
+    background: #b02a37;
+  }
+  
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 600px) {
+    .form-container {
+      margin: 20px;
+      padding: 20px;
+    }
+  
+    .button-group {
+      flex-direction: row;
+    }
+  }

@@ -1,26 +1,45 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Followup.css";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaPills, FaUserMd } from "react-icons/fa";
+import { FaArrowLeft, FaPills, FaUserMd, FaStar } from "react-icons/fa";
 import axios from "axios";
 import logo from "../assets/Logocitamed.png";
 
 const Followup = () => {
   const navigate = useNavigate();
   const [reminders, setReminders] = useState([]);
+  const [headerHeight, setHeaderHeight] = useState(90);
+  const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
     fetchReminders();
+
+    const updateHeaderHeight = () => {
+      const header = document.querySelector(".followup-header");
+      if (header) {
+        setHeaderHeight(header.offsetHeight);
+      }
+    };
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateHeaderHeight);
+    };
   }, []);
 
+  // 📌 Obtener recordatorios
   const fetchReminders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://backend-prueba-1-pj2l.onrender.com/api/reminders", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        "https://backend-prueba-three.vercel.app/api/reminders",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-      // Ordenar por fecha ascendente
       const sortedReminders = res.data.sort((a, b) => {
         const fechaA = new Date(a.fecha).getTime();
         const fechaB = new Date(b.fecha).getTime();
@@ -33,33 +52,63 @@ const Followup = () => {
     }
   };
 
-  // ✅ Marcar recordatorio como completado
+  // 📌 Marcar como completado
   const handleToggleCompleted = async (id, currentState) => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `https://backend-prueba-1-pj2l.onrender.com/api/reminders/${id}/completed`,
+        `https://backend-prueba-three.vercel.app/api/reminders/${id}/completed`,
         { completed: !currentState },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Actualizamos solo ese reminder en el estado y reordenamos
       setReminders((prev) => {
         const updated = prev.map((r) =>
           r._id === id
-            ? { ...r, completed: res.data.completed, completedAt: res.data.completedAt }
+            ? {
+                ...r,
+                completed: res.data.completed,
+                completedAt: res.data.completedAt,
+              }
             : r
         );
-        return updated.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+        return updated.sort(
+          (a, b) => new Date(a.fecha) - new Date(b.fecha)
+        );
       });
     } catch (error) {
       console.error("❌ Error al marcar completado:", error);
     }
   };
 
+  // 📌 Marcar como favorito
+  const handleToggleFavorite = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.put(
+        `https://backend-prueba-three.vercel.app/api/reminders/${id}/favorite`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setReminders((prev) =>
+        prev.map((r) =>
+          r._id === id ? { ...r, favorite: res.data.favorite } : r
+        )
+      );
+    } catch (error) {
+      console.error("❌ Error al marcar favorito:", error);
+    }
+  };
+
+  // 📌 Filtro de favoritos
+  const filteredReminders = showFavorites
+    ? reminders.filter((r) => r.favorite)
+    : reminders;
+
   return (
     <div className="followup-container">
-      {/* Barra superior */}
+      {/* Header fijo */}
       <header className="followup-header">
         <button className="followup-back" onClick={() => navigate("/home")}>
           <FaArrowLeft />
@@ -70,22 +119,36 @@ const Followup = () => {
           className="milogo-followup"
         />
         <h1 className="followup-title">Seguimiento a paciente</h1>
+        {reminders.length > 0 && (
+          <div className="followup-filter">
+            <button
+              className="btn-favorites"
+              onClick={() => setShowFavorites(!showFavorites)}
+            >
+              {showFavorites ? "Ver todos" : "Ver favoritos ⭐"}
+            </button>
+          </div>
+        )}
       </header>
 
-      {/* Lista de recordatorios estilo tarjeta */}
-      <main className="followup-main">
-        {reminders.length === 0 ? (
+      {/* Contenido */}
+      <main className="followup-main" style={{ marginTop: `${headerHeight}px` }}>
+        {/* Botón para alternar favoritos */}
+        
+
+        {filteredReminders.length === 0 ? (
           <p className="followup-no-data">No hay recordatorios</p>
         ) : (
           <div className="followup-grid-container">
             <ul className="followup-list">
-              {reminders.map((reminder) => (
+              {filteredReminders.map((reminder) => (
                 <li
                   key={reminder._id}
-                  className={`followup-card ${reminder.completed ? "completed" : ""}`}
+                  className={`followup-card ${
+                    reminder.completed ? "completed" : ""
+                  }`}
                 >
                   <div className="followup-left">
-                    {/* Ícono dinámico */}
                     {reminder.tipo === "medicamento" ? (
                       <FaPills className="followup-icon" />
                     ) : (
@@ -94,12 +157,17 @@ const Followup = () => {
                   </div>
 
                   <div className="followup-info">
-                    <h3 className="followup-reminder-title">{reminder.titulo}</h3>
-                    <p className="followup-description">{reminder.descripcion}</p>
+                    <h3 className="followup-reminder-title">
+                      {reminder.titulo}
+                    </h3>
+                    <p className="followup-description">
+                      {reminder.descripcion}
+                    </p>
 
                     {reminder.cantidadDisponible !== undefined && (
                       <p className="followup-small">
-                        <b>Cantidad:</b> {reminder.cantidadDisponible} {reminder.unidad}
+                        <b>Cantidad:</b> {reminder.cantidadDisponible}{" "}
+                        {reminder.unidad}
                       </p>
                     )}
 
@@ -107,32 +175,41 @@ const Followup = () => {
                       <>
                         <p className="followup-small">
                           📅{" "}
-                          {new Date(reminder.fecha).toLocaleDateString("es-CO", {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                          })}
+                          {new Date(reminder.fecha).toLocaleDateString(
+                            "es-CO",
+                            {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                            }
+                          )}
                         </p>
                         <p className="followup-small">
                           🕒{" "}
-                          {new Date(reminder.fecha).toLocaleTimeString("es-CO", {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: true,
-                          })}
+                          {new Date(reminder.fecha).toLocaleTimeString(
+                            "es-CO",
+                            {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                            }
+                          )}
                         </p>
                       </>
                     )}
-                    {/* ✅ Mostrar frecuencia */}
+
                     {reminder.frecuencia && (
-                      <p className="followup-frequency">{reminder.frecuencia}</p>
+                      <p className="followup-frequency">
+                        {reminder.frecuencia}
+                      </p>
                     )}
 
-                    {/* ✅ Mostrar fecha de completado si existe */}
                     {reminder.completed && reminder.completedAt && (
                       <p className="followup-completed">
                         ✔️ Completado el{" "}
-                        {new Date(reminder.completedAt).toLocaleString("es-CO")}
+                        {new Date(
+                          reminder.completedAt
+                        ).toLocaleString("es-CO")}
                       </p>
                     )}
                   </div>
@@ -153,6 +230,16 @@ const Followup = () => {
                       />
                       <span className="followup-slider"></span>
                     </label>
+
+                    {/* ⭐ Botón de favorito */}
+                    <button
+                      className={`favorite-btn ${
+                        reminder.favorite ? "active" : ""
+                      }`}
+                      onClick={() => handleToggleFavorite(reminder._id)}
+                    >
+                      <FaStar />
+                    </button>
                   </div>
                 </li>
               ))}

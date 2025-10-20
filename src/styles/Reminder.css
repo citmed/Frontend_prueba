@@ -277,6 +277,25 @@
   transform: scale(1.1);
 }
 
+/* Boton de editar */
+.edit-button {
+  align-self: flex-end;
+  margin: 12px;
+  background: #4274fd;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.edit-button:hover {
+  background: #4274fd;
+  transform: scale(1.1);
+}
+
+
 .no-data {
   text-align: center;
   color: #666;

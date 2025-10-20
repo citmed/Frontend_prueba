@@ -15,7 +15,7 @@ function ForgotPassword() {
     setMessage("");
 
     try {
-      const response = await fetch("https://backend-prueba-1-pj2l.onrender.com/api/auth/forgotpassword", {
+      const response = await fetch("https://backend-prueba-three.vercel.app/api/auth/forgotpassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username }), // 👈 usamos username
