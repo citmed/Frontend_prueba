@@ -109,6 +109,7 @@ const Remindercontrol = () => {
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
               required
+              step="900"
             />
 
             <label className="remindercontrol-label">Descripción</label>
