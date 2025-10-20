@@ -34,8 +34,8 @@ const Remindercontrol = () => {
     const fechaControl = new Date(fecha);
     const fechaRecordatorio = new Date(fechaControl.getTime() - 60 * 60 * 1000);
 
-    const reminder = { 
-      tipo: "control", 
+    const reminder = {
+      tipo: "control",
       titulo,
       fecha: fechaControl,         // fecha del control
       fechaRecordatorio,           // notificación 1 hora antes
@@ -79,10 +79,10 @@ const Remindercontrol = () => {
         <button className="nav-button" onClick={irAReminder}>
           <FaArrowLeft />
         </button>
-                <img 
-          src={logo} 
-          alt="Seguimiento y cumplimiento" 
-          className="milogo-medicine" 
+        <img
+          src={logo}
+          alt="Seguimiento y cumplimiento"
+          className="milogo-medicine"
         />
       </nav>
 
@@ -107,7 +107,18 @@ const Remindercontrol = () => {
               type="datetime-local"
               className="remindercontrol-fecha"
               value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                const minutos = new Date(value).getMinutes();
+
+                // Validamos que los minutos estén en: 0, 15, 30, 45
+                if (![0, 15, 30, 45].includes(minutos)) {
+                  alert("Solo puedes seleccionar horas en intervalos de 15 minutos: 00, 15, 30 o 45");
+                  return;
+                }
+
+                setFecha(value);
+              }}
               required
               step="900"
             />
