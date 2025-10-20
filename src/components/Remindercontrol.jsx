@@ -107,19 +107,30 @@ const Remindercontrol = () => {
   type="datetime-local"
   className="remindercontrol-fecha"
   value={fecha}
-  onChange={(e) => {
-    const value = e.target.value;
-    const minutos = new Date(value).getMinutes();
+ onChange={(e) => {
+  let value = e.target.value;
+  let date = new Date(value);
+  let min = date.getMinutes();
 
-    // Validamos que los minutos estén en 0, 15, 30 o 45
-    if (![0, 15, 30, 45].includes(minutos)) {
-      alert("Solo puedes seleccionar horas en intervalos de 15 minutos: 00, 15, 30 o 45");
-      e.target.value = "";   // 🔥 evita que la hora quede escrita
-      return;
-    }
+  // calcular el intervalo más cercano
+  const permitido = [0, 15, 30, 45];
+  let masCercano = permitido.reduce((prev, curr) =>
+    Math.abs(curr - min) < Math.abs(prev - min) ? curr : prev
+  );
 
+  // si no coincide, ajustar automáticamente
+  if (min !== masCercano) {
+    date.setMinutes(masCercano);
+    date.setSeconds(0);
+
+    const localISO = date.toISOString().slice(0, 16);
+    e.target.value = localISO;  // corregimos visualmente
+    setFecha(localISO);
+  } else {
     setFecha(value);
-  }}
+  }
+}}
+
   required
   step="900"
 />
