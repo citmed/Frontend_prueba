@@ -103,25 +103,27 @@ const Remindercontrol = () => {
             />
 
             <label className="remindercontrol-label">Fecha y hora del control</label>
-            <input
-              type="datetime-local"
-              className="remindercontrol-fecha"
-              value={fecha}
-              onChange={(e) => {
-                const value = e.target.value;
-                const minutos = new Date(value).getMinutes();
+           <input
+  type="datetime-local"
+  className="remindercontrol-fecha"
+  value={fecha}
+  onChange={(e) => {
+    const value = e.target.value;
+    const minutos = new Date(value).getMinutes();
 
-                // Validamos que los minutos estén en: 0, 15, 30, 45
-                if (![0, 15, 30, 45].includes(minutos)) {
-                  alert("Solo puedes seleccionar horas en intervalos de 15 minutos: 00, 15, 30 o 45");
-                  return;
-                }
+    // Validamos que los minutos estén en 0, 15, 30 o 45
+    if (![0, 15, 30, 45].includes(minutos)) {
+      alert("Solo puedes seleccionar horas en intervalos de 15 minutos: 00, 15, 30 o 45");
+      e.target.value = "";   // 🔥 evita que la hora quede escrita
+      return;
+    }
 
-                setFecha(value);
-              }}
-              required
-              step="900"
-            />
+    setFecha(value);
+  }}
+  required
+  step="900"
+/>
+
 
             <label className="remindercontrol-label">Descripción</label>
             <textarea
