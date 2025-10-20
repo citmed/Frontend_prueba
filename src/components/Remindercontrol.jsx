@@ -7,7 +7,8 @@ import logo from "../assets/Logocitamed.png";
 const Remindercontrol = () => {
   const navigate = useNavigate();
   const [titulo, setTitulo] = useState('');
-  const [fecha, setFecha] = useState(''); // ahora incluye hora
+  const [fecha, setFecha] = useState('');
+  const [hora, setHora] = useState(''); // AHORA LA HORA VA SEPARADA
   const [descripcion, setDescripcion] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +19,7 @@ const Remindercontrol = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!fecha) {
+    if (!fecha || !hora) {
       alert('Debes seleccionar fecha y hora del control');
       return;
     }
@@ -30,15 +31,15 @@ const Remindercontrol = () => {
       return;
     }
 
-    // Calcular la fecha del control y una hora antes
-    const fechaControl = new Date(fecha);
+    // Unimos fecha + hora (formato correcto para Date)
+    const fechaControl = new Date(`${fecha}T${hora}`);
     const fechaRecordatorio = new Date(fechaControl.getTime() - 60 * 60 * 1000);
 
     const reminder = {
       tipo: "control",
       titulo,
-      fecha: fechaControl,         // fecha del control
-      fechaRecordatorio,           // notificación 1 hora antes
+      fecha: fechaControl,
+      fechaRecordatorio,
       descripcion
     };
 
@@ -61,6 +62,7 @@ const Remindercontrol = () => {
         setTitulo('');
         setDescripcion('');
         setFecha('');
+        setHora('');
         navigate("/reminder-created");
       } else {
         console.error("❌ Error al guardar recordatorio:", data.message);
@@ -93,6 +95,7 @@ const Remindercontrol = () => {
           </div>
 
           <form className="remindercontrol-form" onSubmit={handleSubmit}>
+            
             <label className="remindercontrol-label">Título</label>
             <input
               type="text"
@@ -102,39 +105,37 @@ const Remindercontrol = () => {
               required
             />
 
-            <label className="remindercontrol-label">Fecha y hora del control</label>
-           <input
-  type="datetime-local"
-  className="remindercontrol-fecha"
-  value={fecha}
- onChange={(e) => {
-  let value = e.target.value;
-  let date = new Date(value);
-  let min = date.getMinutes();
+            <label className="remindercontrol-label">Fecha del control</label>
+            <input
+              type="date"
+              className="remindercontrol-fecha"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+              required
+            />
 
-  // calcular el intervalo más cercano
-  const permitido = [0, 15, 30, 45];
-  let masCercano = permitido.reduce((prev, curr) =>
-    Math.abs(curr - min) < Math.abs(prev - min) ? curr : prev
-  );
-
-  // si no coincide, ajustar automáticamente
-  if (min !== masCercano) {
-    date.setMinutes(masCercano);
-    date.setSeconds(0);
-
-    const localISO = date.toISOString().slice(0, 16);
-    e.target.value = localISO;  // corregimos visualmente
-    setFecha(localISO);
-  } else {
-    setFecha(value);
-  }
-}}
-
-  required
-  step="900"
-/>
-
+            <label className="remindercontrol-label">Hora del control</label>
+            <select
+              className="remindercontrol-fecha"
+              value={hora}
+              onChange={(e) => setHora(e.target.value)}
+              required
+            >
+              <option value="">Seleccionar hora</option>
+              <option value="00:00">00:00</option>
+              <option value="00:15">00:15</option>
+              <option value="00:30">00:30</option>
+              <option value="00:45">00:45</option>
+              <option value="01:00">01:00</option>
+              <option value="01:15">01:15</option>
+              <option value="01:30">01:30</option>
+              <option value="01:45">01:45</option>
+              <option value="02:00">02:00</option>
+              <option value="02:15">02:15</option>
+              <option value="02:30">02:30</option>
+              <option value="02:45">02:45</option>
+              {/* ⬆️ Puedes continuar hasta 23:45 si lo deseas */}
+            </select>
 
             <label className="remindercontrol-label">Descripción</label>
             <textarea
